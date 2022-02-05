@@ -44,7 +44,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private int xpos = random.nextInt(31);
     private int ypos = random.nextInt(20);
 
-    public static String playRandomSong() {
+    public static String playRandomMusic() {
         List<String> givenList = Arrays.asList(
                 "./mp3/m1.wav",
                 "./mp3/m2.wav");
@@ -53,17 +53,17 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     }
 
     public void backgroundMusic() {
-        String song = playRandomSong();
+        String songs = playRandomMusic();
         try {
             clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File(song)));
+            clip.open(AudioSystem.getAudioInputStream(new File(songs)));
             clip.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static String playRandomSound() {
+    public static String playRandomGameOverSound() {
         List<String> givenList = Arrays.asList(
                 "./mp3/s1.wav",
                 "./mp3/s2.wav");
@@ -72,10 +72,29 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     }
 
     public void gameOverSound() {
-        String sound = playRandomSound();
+        String sounds = playRandomGameOverSound();
         try {
-            clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File(sound)));
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(new File(sounds)));
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String playRandomEatingSound() {
+        List<String> givenList = Arrays.asList(
+                "./mp3/sound1.wav",
+                "./mp3/sound2.wav");
+        Random random = new Random();
+        return givenList.get(random.nextInt(givenList.size()));
+    }
+
+    public void eatingSound() {
+        String effects = playRandomEatingSound();
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(new File(effects)));
             clip.start();
         } catch (Exception e) {
             e.printStackTrace();
@@ -190,8 +209,10 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         if ((flowerX[xpos] == beeXlength[0] && flowerY[ypos] == beeYlength[0])) {
             score++;
             beelength++;
+            eatingSound();
             xpos = random.nextInt(31);
             ypos = random.nextInt(20);
+
         }
         if (beelength % 2 == 0) {
             flower = new ImageIcon("./img/flower.png");
@@ -201,7 +222,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             flower.paintIcon(this, g, flowerX[xpos], flowerY[ypos]);
         } else
             flower = new ImageIcon("./img/flower3.png");
-        flower.paintIcon(this, g, flowerX[xpos], flowerY[ypos]);
+            flower.paintIcon(this, g, flowerX[xpos], flowerY[ypos]);
     }
 
     private void gameOver(Graphics g) {
@@ -236,10 +257,11 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     }
 
     private void gameOverMessageDisplay(Graphics g) {
-        g.setColor(Color.lightGray);
+        g.setColor(Color.white);
         g.setFont(new Font("arial", Font.BOLD, 50));
         g.drawString("Game Over", 315, 360);
 
+        g.setColor(Color.LIGHT_GRAY);
         g.setFont(new Font("arial", Font.BOLD, 20));
         g.drawString("Press SPACE to restart", 335, 395);
     }
@@ -336,9 +358,6 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             if (!left) {
                 right = true;
             }
-//            else {
-//                right = false;
-//                left = true;
             up = false;
             down = false;
         }
@@ -350,10 +369,6 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             if (!right) {
                 left = true;
             }
-//            else {
-//                left = false;
-//                right = true;
-//            }
             up = false;
             down = false;
         }
@@ -365,10 +380,6 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             if (!down) {
                 up = true;
             }
-//            else {
-//                up = false;
-//                down = true;
-
             left = false;
             right = false;
         }
@@ -380,9 +391,6 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             if (!up) {
                 down = true;
             }
-//            else {
-//                up = false;
-//                down = true;
             left = false;
             right = false;
         }

@@ -20,6 +20,7 @@ public class Main {
         frame.setBackground(Color.DARK_GRAY);
         frame.setIconImage(icon.getImage());
         frame.setTitle("Bee-snake Game");
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

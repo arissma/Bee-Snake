@@ -269,10 +269,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         timer.start();
         if (right) {
-            for (int r = beelength - 1; r >= 0; r--) {
-                beeYlength[r + 1] = beeYlength[r];
-            }
             for (int r = beelength; r >= 0; r--) {
+                beeYlength[r + 1] = beeYlength[r];
                 if (r == 0) {
                     beeXlength[r] = beeXlength[r] + 25;
                 } else {
@@ -285,10 +283,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             repaint();
         }
         if (left) {
-            for (int r = beelength - 1; r >= 0; r--) {
-                beeYlength[r + 1] = beeYlength[r];
-            }
             for (int r = beelength; r >= 0; r--) {
+                beeYlength[r + 1] = beeYlength[r];
                 if (r == 0) {
                     beeXlength[r] = beeXlength[r] - 25;
                 } else {
@@ -301,10 +297,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             repaint();
         }
         if (up) {
-            for (int r = beelength - 1; r >= 0; r--) {
-                beeXlength[r + 1] = beeXlength[r];
-            }
             for (int r = beelength; r >= 0; r--) {
+                beeXlength[r + 1] = beeXlength[r];
                 if (r == 0) {
                     beeYlength[r] = beeYlength[r] - 25;
                 } else {
@@ -317,10 +311,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             repaint();
         }
         if (down) {
-            for (int r = beelength - 1; r >= 0; r--) {
-                beeXlength[r + 1] = beeXlength[r];
-            }
             for (int r = beelength; r >= 0; r--) {
+                beeXlength[r + 1] = beeXlength[r];
                 if (r == 0) {
                     beeYlength[r] = beeYlength[r] + 25;
                 } else {
